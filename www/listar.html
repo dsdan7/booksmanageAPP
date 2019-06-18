@@ -19,8 +19,12 @@
    <script>
      
   $(document).ready(function(){
+    localStorage.setItem("cod",1);
      preencher();
-
+      $( "#titulo" ).prop( "disabled", true );
+      $( "#autor" ).prop( "disabled", true );
+      $( "#ano" ).prop( "disabled", true );
+      $( "#isbn" ).prop( "disabled", true );
   });
 
 </script>
@@ -83,11 +87,11 @@
 		
 		<div class="row">
 			<div class="col-xs-4">
-				<button class="btn btn-success btn-block">Salvar</button>
+				<button class="btn btn-success btn-block"id="atualizar">Salvar</button>
 			</div>
 
 			<div class="col-xs-4">
-				<button class="btn btn-warning  btn-block">Editar</button>
+				<button class="btn btn-warning  btn-block" id="editar">Editar</button>
         </div>
 				<div class="col-xs-4">
 					<button class="btn btn-danger btn-block" id="deletar" >Deletar</button>

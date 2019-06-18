@@ -41,7 +41,7 @@ function preencher(){
    success:function(data){
     var item="";
     $.each(data.livros,function(i,dados){
-      item+="<option value='"+dados.ibsn+"'>"+dados.titulo+"</option>";
+      item+="<option value='"+dados.cod+"'>"+dados.titulo+"</option>";
       
       
     });
@@ -52,6 +52,10 @@ function preencher(){
      navigator.notification.alert(data)
    } 
  });
+
+
+
+
 }
 
 $(document).on("change","#lstLivros",function(){
@@ -69,7 +73,7 @@ $(document).on("change","#lstLivros",function(){
       $("#isbn").val(data.livros.isbn);
       
       
-      localStorage.setItem("cod",data.livro.isbn); 
+      localStorage.setItem("cod",data.livro.cod); 
    },
    error:function(data){
      navigator.notification.alert(data)
@@ -78,25 +82,72 @@ $(document).on("change","#lstLivros",function(){
 });
 
 $(document).on("click","#deletar",function(){
-
-  var cod= parseInt(localStorage.getItem("cod"));
+  var cod=parseInt(localStorage.getItem("cod"));
   
-$.ajax({
+    $.ajax({
    type:"get",
    url:"https://database-wtf-dsdan7.c9users.io/deletar.php",
-   data:"id="+$("#isbn").val(),
+   data:"id="+cod,
    
   
    success:function(data){
       navigator.notification.alert(data);
       location.reload();
+      $("#titulo").val(cod);
    
    },
    error:function(data){
      navigator.notification.alert(data)
    } 
  });
-$("#titulo").val(localStorage.getItem("cod"));
+
+});
+
+function editar(){
+ $( "#titulo" ).prop( "disabled", false );
+  $( "#autor" ).prop( "disabled", false );
+  $( "#ano" ).prop( "disabled", false );
+  $( "#isbn" ).prop( "disabled", false );
+}
+function salvar(){
+  $( "#titulo" ).prop( "disabled", true );
+  $( "#autor" ).prop( "disabled", true );
+  $( "#ano" ).prop( "disabled", true );
+  $( "#isbn" ).prop( "disabled", true );
+}
+
+$(document).on("click","#editar",function(){
+ editar();
+});
+///COMEÇO DA GAMBIARRA DO SALVAR
+$(document).on('click','#atualizar',function(){
+  salvar();
+  var parametros = {
+    "titulo": $("#titulo").val(),
+    "autor": $("#autor").val(),
+    "ano": $("#ano").val(),
+    "isbn": $("#isbn").val(),
+    "cod":localStorage.getItem("cod")
+  }
+
+  $.ajax({
+    type:"post",
+    url:"https://database-wtf-dsdan7.c9users.io/atualizar.php",
+    data:parametros,
+    success:function(data){
+      $("#titulo").val(" ");
+      $("#autor").val(" ");
+      $("#ano").val(" ");
+      $("#isbn").val(" ");
+      preencher();
+      navigator.notification.alert(data);
+    },
+    error:function(data){
+      navigator.notification.alert(data);
+      //https://uigradients.com/#CoolSky
+    }
+  });
+  
 });
 
 
