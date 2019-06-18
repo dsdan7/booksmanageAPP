@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+	<!-- Jquery -->
+	<script src="components/loader.js"></script>
+	<script src="components/jquery-3.3.1.min.js"></script>
+	<script src="components/banco.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="components/loader.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+   <script>
+     
+  $(document).ready(function(){
+     preencher();
+
+  });
+
+</script>
+</head>
+
+<body>
+	<div class="container">
+		      <div class="row">
+			       <div class="col-xs-12">
+				     <h1>LISTAR LIVROS</h1>
+			       </div>
+		      </div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<label for="">Livros</label>
+					<select id="lstLivros" class="form-control">
+              </select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>DADOS SELECIONADOS</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<label for="">Titulo</label>
+					<input type="text" class="form-control" id="titulo">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<label for="">Autor</label>
+					<input type="text" class="form-control" id="autor">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<label for="">Ano</label>
+					<input type="text" class="form-control" id="ano">
+				</div>
+			</div>
+		</div>
+    	<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group">
+					<label for="">ISBN</label>
+					<input type="text" class="form-control" id="isbn">
+				</div>
+			</div>
+      </div>
+      	
+		
+		<div class="row">
+			<div class="col-xs-4">
+				<button class="btn btn-success btn-block">Salvar</button>
+			</div>
+
+			<div class="col-xs-4">
+				<button class="btn btn-warning  btn-block">Editar</button>
+        </div>
+				<div class="col-xs-4">
+					<button class="btn btn-danger btn-block" id="deletar" >Deletar</button>
+				</div>
+		</div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-block btn-primary" id="voltar">VOLTAR</button>
+      </div>
+    </div>
+</body>
+<style>
+	body {
+		background-image: linear-gradient(to right, red, yellow);
+    text-align:center;
+
+	}
+  .btn-primary{
+   margin-top:4vh;
+  }
+</style>
+
+</html>
