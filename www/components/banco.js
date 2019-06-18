@@ -1,3 +1,4 @@
+
 $(document).on('click','#cadastro',function(){
   var parametros = {
     "titulo": $("#titulo").val(),
@@ -72,8 +73,7 @@ $(document).on("change","#lstLivros",function(){
       $("#ano").val(data.livros.ano);
       $("#isbn").val(data.livros.isbn);
       
-      
-      localStorage.setItem("cod",data.livro.cod); 
+      localStorage.setItem("codigo",data.livros.cod); 
    },
    error:function(data){
      navigator.notification.alert(data)
@@ -82,9 +82,10 @@ $(document).on("change","#lstLivros",function(){
 });
 
 $(document).on("click","#deletar",function(){
-  var cod=parseInt(localStorage.getItem("cod"));
+    var cod=localStorage.getItem("codigo");
   
     $.ajax({
+   
    type:"get",
    url:"https://database-wtf-dsdan7.c9users.io/deletar.php",
    data:"id="+cod,
@@ -93,7 +94,7 @@ $(document).on("click","#deletar",function(){
    success:function(data){
       navigator.notification.alert(data);
       location.reload();
-      $("#titulo").val(cod);
+      
    
    },
    error:function(data){
@@ -119,16 +120,20 @@ function salvar(){
 $(document).on("click","#editar",function(){
  editar();
 });
+
 ///COMEÇO DA GAMBIARRA DO SALVAR
 $(document).on('click','#atualizar',function(){
-  salvar();
+  
+  //♦salvar();
+  var codi=localStorage.getItem("codigo");
   var parametros = {
+    
     "titulo": $("#titulo").val(),
     "autor": $("#autor").val(),
     "ano": $("#ano").val(),
     "isbn": $("#isbn").val(),
-    "cod":localStorage.getItem("cod")
-  }
+    "cod":codi,
+    }
 
   $.ajax({
     type:"post",
